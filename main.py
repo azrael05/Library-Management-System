@@ -1,7 +1,7 @@
-from book import *  
+from Books.book import *  
 from login import login
-from Add_book import add_book,add_book_from_excel
-from Remove_book import delete_all_books,remove_book
+from Books.Add_book import add_book,add_book_from_excel
+from Books.Remove_book import delete_all_books,remove_book
 
 mydb=login()
 

@@ -1,3 +1,5 @@
+#Adding Functions
+
 def add_book(books,database):
     mycursor=database.cursor()
     for book in books:
@@ -13,7 +15,7 @@ def add_book(books,database):
 
 def add_book_from_excel(database,excel_file):
     import pandas as pd
-    from book import Book
+    from Books.book import Book
 
     cursor=database.cursor()
     df=pd.read_csv(excel_file,header=0)
@@ -28,3 +30,21 @@ def add_book_from_excel(database,excel_file):
     cursor.execute("SELECT COUNT(DISTINCT title,author) FROM books")
     for x in cursor:
         print("Total number of books in the library: {num}".format(num=str(x[0])))
+
+
+
+
+## Removing Functions
+from Books.book import get_book_details
+def delete_all_books(database):
+    cursor=database.cursor()
+    cursor.execute("DELETE FROM books")
+    database.commit()
+    print("All books deleted successfully")
+
+def remove_book(database):
+    print("Enter book id")
+    id=int(input())
+    get_book_details(cursor,id)
+    cursor=database.cursor()
+    cursor.execute("DELETE * FROM book where id={id}".format(id=id))

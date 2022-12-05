@@ -8,9 +8,26 @@ def create_new_user(database):
     role=input()
     cursor=database.cursor()
     user=USER(username,password,role)
-    cursor.execute("CREATE USER IF NOT EXISTS {username}@localhost IDENTIFIED BY '{password}'".format(username=user.name,password=user.password))
-    if(user.role=="Admin"):
+    while(True):
+        try:
+            cursor.execute("CREATE USER {username}@localhost IDENTIFIED BY '{password}'".format(username=user.name,password=user.password))
+            break
+        except:
+            print("Username already exists")
+    if(user.role.lower()=="admin"):
         cursor.execute("GRANT ALL PRIVILEGES TO {username}@localhost ON library.*")
-    else:
-        cursor.execute("GRANT SELECT TO {username}@localhost ON library.*")
+    elif(user.role.lower()=="student"):
+        cursor.execute("GRANT SELECT TO {username}@localhost ON library.books")
     database.commit()
+
+def list_users(database):
+    cursor=database.cursor()
+    cursor.execute("SHOW USERS")
+    for x in cursor:
+        print(x)
+
+def search_user(database,username):
+    cursor=database.cursor()
+    cursor.execute("SHOW USERS WHERE username={username}".format(username=username))
+    for x in cursor:
+        print(x)

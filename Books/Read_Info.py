@@ -1,7 +1,8 @@
 import sys
 sys.path.insert(0,"../")
-def get_book_details(mycursor,id):
+def get_book_details(database,id):
     from Pretty_table_converter import convert_to_pretty_table
+    mycursor=database.cursor()
     if not id:
         id=input("Enter the id of the book: ")
     if not id:
@@ -15,15 +16,20 @@ def get_book_details(mycursor,id):
 
 
 
-def list_all_book(mycursor):
+def list_all_book(database,role):
     from Pretty_table_converter import convert_to_pretty_table
-    mycursor.execute("SELECT * FROM books")
+    mycursor=database.cursor()
+    if(role=="admin"):
+        mycursor.execute("SELECT * FROM books")
+    if(role=="student"):
+        mycursor.execute("SELECT id,title,author FROM books")
     convert_to_pretty_table(mycursor)
 
 
 
-def search_book(mycursor):
+def search_book(database):
     from Pretty_table_converter import convert_to_pretty_table
+    mycursor=database.cursor()
     title=input("Enter the title of the book: ")
     author=input("Enter the author of the book: ")
     sql="SELECT id,title,author FROM books WHERE title LIKE '%{title}%' AND author LIKE '%{author}%'".format(title=str(title), author=str(author))

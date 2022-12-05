@@ -1,7 +1,7 @@
 from Books.Read_Info import *
 from Books.Modify_Info import *
 from Books.book import Book
-
+from lib.issue_return import *
 def admin(mydatabase):
     cursor=mydatabase.cursor()
     ch=1
@@ -20,25 +20,28 @@ def admin(mydatabase):
                     author=input("Enter the author of the book: ")
                     quantity=input("Enter the quantity of the book: ")
                     books.append(Book(title,author,quantity))
-                add_book(books,mydatabase)
+                add_book(mydatabase,books)
             if ch1==2:
                 print("Enter the path of the excel file")
                 path=input()
                 add_book_from_excel(mydatabase,path)
-        # elif ch==2:
-        #     id=int(input("Enter the id of the book: "))
-        #     issue_book(id,mycursor)
-        # elif ch==3:
-        #     id=int(input("Enter the id of the book: "))
-        #     return_book(id,mycursor)
+        elif ch==2:
+            username=input("Enter username")
+            id=int(input("Enter the id of the book: "))
+            issue_book(username,id,mydatabase)
+        elif ch==3:
+            username=input("Enter username")
+            id=int(input("Enter the id of the book: "))
+            return_book(username,id,mydatabase)
         if ch==4:
-            search_book(mydatabase,id)
+            search_book(mydatabase)
         elif ch==5:
-            list_all_book(mydatabase)
+            list_all_book(mydatabase,"admin")
         elif ch==6:
-            get_book_details(mydatabase)
+            id=int(input("Enter book id"))
+            get_book_details(mydatabase,id)
         elif ch==7:
-            delete_all_books(mydatabase)
+            remove_book(mydatabase)
         # elif ch==:
         #     add_new_user()
         # elif ch==:

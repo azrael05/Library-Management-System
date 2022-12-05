@@ -1,5 +1,5 @@
 import sys
-sys.path.insert(0,"../")
+sys.path.insert(0,"./Books")
 def get_book_details(database,id):
     from Pretty_table_converter import convert_to_pretty_table
     mycursor=database.cursor()

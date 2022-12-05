@@ -1,6 +1,6 @@
 #Adding Functions
 
-def add_book(books,database):
+def add_book(database,books):
     mycursor=database.cursor()
     for book in books:
         try:
@@ -35,7 +35,7 @@ def add_book_from_excel(database,excel_file):
 
 
 ## Removing Functions
-from Read_Info import get_book_details 
+from Read_Info import *
 def delete_all_books(database):
     cursor=database.cursor()
     cursor.execute("DELETE FROM books")
@@ -45,6 +45,7 @@ def delete_all_books(database):
 def remove_book(database):
     print("Enter book id")
     id=int(input())
-    get_book_details(cursor,id)
+    cursor=database.cursor()
+    get_book_details(database,id)
     cursor=database.cursor()
     cursor.execute("DELETE * FROM book where id={id}".format(id=id))

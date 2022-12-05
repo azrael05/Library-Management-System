@@ -9,7 +9,8 @@ def student(mydatabase):
         elif ch==2:
             list_all_book(mydatabase,"student")
         elif ch==3:
-            get_book_details(mydatabase)
+            id=input("Enter book id")
+            get_book_details(mydatabase,id)
         # elif ch==4:
         #     logout(mydatabase)
         elif ch==5: 

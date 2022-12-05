@@ -1,7 +1,7 @@
  
 from login import login
 from student import *
-from admin import admin
+from admin import *
 mydb=login()
 print("Choose options 1. student 2.admin")
 choice=int(input())

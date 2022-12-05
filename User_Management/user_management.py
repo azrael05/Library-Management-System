@@ -1,35 +1,30 @@
 import sys
 sys.path.insert(0,"./User_Management")
 from User import USER
-def create_new_user(database,user):
+from Pretty_table_converter import convert_to_pretty_table
+def create_new_user(database,users):
     cursor=database.cursor()
-    while(True):
-        try:
-            cursor.execute("CREATE USER {username}@localhost IDENTIFIED BY '{password}'".format(username=user.name,password=user.password))
-            break
-        except:
-            print("Username already exists")
-    if(user.role.lower()=="admin"):
-        cursor.execute("GRANT ALL PRIVILEGES TO {username}@localhost ON library.*")
-    elif(user.role.lower()=="student"):
-        cursor.execute("GRANT SELECT TO {username}@localhost ON library.books")
+    for user in users:
+        cursor.execute("INSERT INTO users(name,password,role) VALUES ('{name}','{password}','{role}')".format(name=user.name,password=user.password,role=user.role))
+        cursor.execute("SELECT * FROM users WHERE name='{name}' AND password='{password}' AND role='{role}'".format(name=user.name,password=user.password,role=user.role))
+        convert_to_pretty_table(cursor)
     database.commit()
-
+        
 def list_users(database):
     cursor=database.cursor()
-    cursor.execute("SELECT user FROM mysql.user")
-    for x in cursor:
-        print(x)
+    cursor.execute("SELECT * FROM users")
+    convert_to_pretty_table(cursor)
+    
 
 def remove_user(database):
     cursor=database.cursor()
     username=input("Enter username")
-    cursor.execute("DELETE FROM mysql.user WHERE user='{username}'".format(username=username))
+    id=input("Enter id")
+    cursor.execute("DELETE FROM users WHERE name='{username}' AND id={id}".format(username=username,id=id))
     database.commit()
 
 def search_user(database):
-    username=input("Enter username")
+    id=input("Enter id")
     cursor=database.cursor()
-    cursor.execute("SELECT user FROM mysql.user WHERE user LIKE %{username}%".format(username=username))
-    for x in cursor:
-        print(x)
+    cursor.execute("SELECT * FROM users WHERE id={id}".format(id=id))
+    convert_to_pretty_table(cursor)

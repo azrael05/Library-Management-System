@@ -6,7 +6,7 @@ values={1:"Search a book",
         }
 def student(mydatabase):
     ch=1
-    while(ch!=5):
+    while(True):
         for i in sorted(values.keys()):
             print("{i} - {val}".format(i=i,val=values[i]))
         ch=int(input())

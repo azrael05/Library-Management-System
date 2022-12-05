@@ -16,11 +16,12 @@ values={1:"Add a book",
         10:"List all users",
         11:"Search User",
         12:"See list of current issued",
-        13:"Exit",
+        13:"get_overdue_list",
+        14:"Exit",
         }
 def admin(database):
     ch=1
-    while(ch!=12):
+    while(True):
         for i in sorted(values.keys()):
             print("{i} - {val}".format(i=i,val=values[i]))
         ch=int(input())
@@ -70,7 +71,7 @@ def admin(database):
             role=input()
             from User_Management.User import USER
             user=USER(username,password,role)
-            create_new_user(database,user)
+            create_new_user(database,[user])
         elif values[ch]=="List all users":
             list_users(database)
         elif values[ch]=="Search User":
@@ -79,5 +80,7 @@ def admin(database):
             get_list_issued(database)
         elif values[ch]=="Exit": 
             break
+        elif values[ch]=="get_overdue_list":
+            get_overdue_list(database)
         print("press key to continue")
         input()

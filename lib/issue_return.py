@@ -2,6 +2,8 @@ import sys
 sys.path.insert(0,"../")
 def issue_book(database,username,id):
     cursor=database.cursor()
+    cursor.execute("SELECT EXISTS (SELECT username FROM users WHERE name='{username}')".format(username=username))
+    
     cursor.execute("SELECT available FROM books WHERE id={id}".format(id=id))
     for x in cursor:
         if(x[0]==0):
@@ -27,5 +29,12 @@ def get_list_issued(database):
     from Pretty_table_converter import convert_to_pretty_table
     cursor=database.cursor()
     sql="SELECT username,expected_return_date FROM records WHERE overtime IS NULL"
+    cursor.execute(sql)
+    convert_to_pretty_table(cursor)
+
+def get_overdue_list(database):
+    from Pretty_table_converter import convert_to_pretty_table
+    cursor=database.cursor()
+    sql="SELECT username, id, DATEDIFF(CURDATE(),issue_date) as overdue_by FROM records WHERE DATEDIFF(CURDATE(),issue_date)>21"
     cursor.execute(sql)
     convert_to_pretty_table(cursor)

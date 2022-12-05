@@ -1,3 +1,5 @@
+import sys
+sys.path.insert(0,"./User_Management")
 from User import USER
 def create_new_user(database):
     print("Enter user name for new user")

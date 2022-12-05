@@ -1,4 +1,4 @@
-def issue_book(username,id,database):
+def issue_book(database,username,id):
     cursor=database.cursor()
 
     sql="UPDATE books SET available = available - 1  WHERE id={id}".format(id=str(id))
@@ -9,7 +9,7 @@ def issue_book(username,id,database):
     
     database.commit()
 
-def return_book(username,id,database):
+def return_book(database,username,id):
     cursor=database.cursor()
     sql="UPDATE books SET available = available + 1  WHERE id={id}".format(id=str(id))
     cursor.execute(sql)

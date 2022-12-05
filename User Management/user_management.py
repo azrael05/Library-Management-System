@@ -1,11 +1,5 @@
-import mysql.connector
 from User_details import USER
-mydb=mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="password"
-    database="library"
-)
+
 print("Enter user name for new user")
 username=input()
 print("Enter password for new user")

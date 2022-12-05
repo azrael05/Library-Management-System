@@ -1,52 +1,5 @@
-import mysql.connector
-def convert_to_pretty_table(cursor):
-    from prettytable import PrettyTable
-  
-    # Specify the Column Names while initializing the Table
-    column_names=[]
-
-    for x in cursor.description:
-        column_names.append(x[0])
-    myTable = PrettyTable(column_names)
-    
-    for x in cursor:
-        myTable.add_row(list(x))
-    
-    print(myTable)
-mydb=mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="password",
-    database="library")
-
-cursor=mydb.cursor()
-cursor.execute("SELECT * FROM books LIMIT 5")
-
-convert_to_pretty_table(cursor)
-cursor.execute("DROP USER devesh@localhost")
-cursor.execute("CREATE USER IF NOT EXISTS devesh@localhost IDENTIFIED BY 'password'")
-cursor.execute("GRANT SELECT ON library.* TO devesh@localhost")
-cursor.execute("SELECT USER FROM mysql.user ")
-for user in cursor:
-    print(user)
-
-cursor.execute("SELECT current_user()")
-for user in cursor:
-    print("Current user is-",user)
-mydb.commit()
-mydb.close()
-mydb=mysql.connector.connect(
-    host="localhost",
-    user="devesh",
-    password="password",
-    database="library")
-cursor=mydb.cursor()
-cursor.execute("SELECT current_user()")
-for user in cursor:
-    print("Current user is-",user)
-cursor.execute("SELECT * FROM books LIMIT 5")
-convert_to_pretty_table(cursor)
-
-# cursor.execute("UPDATE books SET title='your tits'  WHERE id=1")
-cursor.execute("SELECT * from books WHERE id=1")
-convert_to_pretty_table(cursor)
+class USER():
+    def __init__(self,username,password,role) -> None:
+        self.name=username
+        self.password=password
+        self.role=role

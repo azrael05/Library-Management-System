@@ -15,7 +15,8 @@ values={1:"Add a book",
         9:"Create new user",
         10:"List all users",
         11:"Search User",
-        12:"Exit",
+        12:"See list of current issued",
+        13:"Exit",
         }
 def admin(database):
     ch=1
@@ -63,10 +64,8 @@ def admin(database):
             list_users(database)
         elif values[ch]=="Search User":
             search_user(database)
-        # elif values[ch]11:
-        #     get_list_of_issued()
-        # elif values[ch]8:
-        #     logout(database)
+        elif values[ch]=="See list of current issued":
+            get_list_issued(database)
         elif values[ch]=="Exit": 
             break
         print("press key to continue")

@@ -45,7 +45,7 @@ def delete_all_books(database):
 def remove_book(database):
     print("Enter book id")
     id=int(input())
-    cursor=database.cursor()
     get_book_details(database,id)
     cursor=database.cursor()
-    cursor.execute("DELETE * FROM book where id={id}".format(id=id))
+    cursor.execute("DELETE FROM books where id='{id}'".format(id=id))
+    database.commit()

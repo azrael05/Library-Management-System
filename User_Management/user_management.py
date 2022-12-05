@@ -24,12 +24,19 @@ def create_new_user(database):
 
 def list_users(database):
     cursor=database.cursor()
-    cursor.execute("SHOW USERS")
+    cursor.execute("SELECT user FROM mysql.user")
     for x in cursor:
         print(x)
 
-def search_user(database,username):
+def remove_user(database):
     cursor=database.cursor()
-    cursor.execute("SHOW USERS WHERE username={username}".format(username=username))
+    username=input("Enter username")
+    cursor.execute("DELETE FROM mysql.user WHERE user='{username}'".format(username=username))
+    database.commit()
+
+def search_user(database):
+    username=input("Enter username")
+    cursor=database.cursor()
+    cursor.execute("SELECT user FROM mysql.user WHERE user LIKE %{username}%".format(username=username))
     for x in cursor:
         print(x)

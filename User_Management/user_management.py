@@ -1,15 +1,8 @@
 import sys
 sys.path.insert(0,"./User_Management")
 from User import USER
-def create_new_user(database):
-    print("Enter user name for new user")
-    username=input()
-    print("Enter password for new user")
-    password=input()
-    print("Enter role for new user")
-    role=input()
+def create_new_user(database,user):
     cursor=database.cursor()
-    user=USER(username,password,role)
     while(True):
         try:
             cursor.execute("CREATE USER {username}@localhost IDENTIFIED BY '{password}'".format(username=user.name,password=user.password))

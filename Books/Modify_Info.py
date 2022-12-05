@@ -25,7 +25,7 @@ def add_book_from_excel(database,excel_file):
     print(df.head(5))
     for index, row in df.iterrows():
         books.append(Book(row['title'],row['author'],row['quantity']))
-    add_book(books,cursor)
+    add_book(database,books)
     print("Added {num} books.".format(num=str(len(books))))
     cursor.execute("SELECT COUNT(DISTINCT title,author) FROM books")
     for x in cursor:
@@ -35,6 +35,8 @@ def add_book_from_excel(database,excel_file):
 
 
 ## Removing Functions
+import sys
+sys.path.insert(0,"./Books")
 from Read_Info import *
 def delete_all_books(database):
     cursor=database.cursor()

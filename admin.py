@@ -53,13 +53,24 @@ def admin(database):
             search_book(database)
         elif values[ch]=="List all books":
             list_all_book(database,"admin")
+
         elif values[ch]=="Get book details":
             id=int(input("Enter book id"))
             get_book_details(database,id)
+
         elif values[ch]=="Remove a book":
             remove_book(database)
+
         elif values[ch]=="Create new user":
-            create_new_user(database)
+            print("Enter user name for new user")
+            username=input()
+            print("Enter password for new user")
+            password=input()
+            print("Enter role for new user")
+            role=input()
+            from User_Management.User import USER
+            user=USER(username,password,role)
+            create_new_user(database,user)
         elif values[ch]=="List all users":
             list_users(database)
         elif values[ch]=="Search User":

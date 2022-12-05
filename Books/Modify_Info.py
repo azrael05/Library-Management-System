@@ -15,7 +15,7 @@ def add_book(books,database):
 
 def add_book_from_excel(database,excel_file):
     import pandas as pd
-    from Books.book import Book
+    from book import Book
 
     cursor=database.cursor()
     df=pd.read_csv(excel_file,header=0)
@@ -35,7 +35,7 @@ def add_book_from_excel(database,excel_file):
 
 
 ## Removing Functions
-from Books.book import get_book_details
+from Read_Info import get_book_details 
 def delete_all_books(database):
     cursor=database.cursor()
     cursor.execute("DELETE FROM books")

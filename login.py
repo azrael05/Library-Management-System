@@ -16,4 +16,8 @@ def login():
     database="library"
     )
     return mydb
+
+def create_new_account(database):
+    cursor=database.cursor()
+    cursor.execute("CREATE USER")    
     

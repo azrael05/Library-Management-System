@@ -1,3 +1,5 @@
+import sys
+sys.path.insert(0,"../")
 def get_book_details(mycursor,id):
     from Pretty_table_converter import convert_to_pretty_table
     if not id:
@@ -11,10 +13,14 @@ def get_book_details(mycursor,id):
     mycursor.execute(sql)
     convert_to_pretty_table(mycursor)
 
+
+
 def list_all_book(mycursor):
     from Pretty_table_converter import convert_to_pretty_table
     mycursor.execute("SELECT * FROM books")
     convert_to_pretty_table(mycursor)
+
+
 
 def search_book(mycursor):
     from Pretty_table_converter import convert_to_pretty_table

@@ -39,6 +39,8 @@ cursor.execute("DROP TABLE IF EXISTS records")
 cursor.execute("CREATE TABLE records (userid INT,username VARCHAR(255) NOT NULL,id INT , issue_date DATE, expected_return_date DATE GENERATED ALWAYS AS (ADDDATE(issue_date,21)), return_date DATE DEFAULT NULL, overtime VARCHAR(5) GENERATED ALWAYS AS (CASE WHEN return_date IS NULL THEN NULL WHEN return_date-issue_date>21 THEN \"YES\" ELSE \"NO\" END))")
 cursor.execute("DROP TABLE IF EXISTS users")
 cursor.execute("CREATE TABLE users (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255), password VARCHAR(255), role VARCHAR(255))")
+cursor.execute("CREATE USER IF NOT EXISTS student")
+cursor.execute("GRANT SELECT on library.books to student")
 from Books.Modify_Info import add_book_from_excel
 add_book_from_excel(mydb,r"Demo files\bohemian_literature.csv")
 Add_user_from_excel(mydb,r"Demo files\user.xlsx")

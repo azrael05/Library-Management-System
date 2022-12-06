@@ -43,13 +43,13 @@ def admin(database):
                 path=WindowsPath(input())
                 add_book_from_excel(database,path)
         elif values[ch]=="Issue a book":
-            username=input("Enter username")
+            userid=input("Enter id")
             id=int(input("Enter the id of the book: "))
-            issue_book(database,username,id)
+            issue_book(database,userid,id)
         elif values[ch]=="Return a book":
-            username=input("Enter username")
+            userid=input("Enter id")
             id=int(input("Enter the id of the book: "))
-            return_book(database,username,id)
+            return_book(database,userid,id)
         elif values[ch]=="Search a book":
             search_book(database)
         elif values[ch]=="List all books":

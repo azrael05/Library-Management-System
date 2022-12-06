@@ -11,26 +11,27 @@
 There are two types of users and their rights are 
 1. Admin - modify records for issue and return, search and modify book records, search and modify users (admin and student), see list of overdue books, see list of currently due books
 2. Student - Search for books and see availability of the book
+
 <br><br><br><br>
-There are three tables in the database:-
-1. Books - to store all the details of book with the following schema 
-- Book id INT auto-generated
-- Book Title String
-- Author String
-- Quantity INT - to denote the total quantity of the book in the library
-- Available INT - to show no. of those book currently available in library
+## There are three tables in the database:-
+1. Books: to store all the details of book with the following schema 
+- Book id INT: auto-generated
+- Book Title STRING
+- Author STRING
+- Quantity INT: to denote the total quantity of the book in the library
+- Available INT: to show no. of those book currently available in library
 <br>
 2. Records - To store issue and return details
-- User id INT to denote user
-- Book id INT to denote book
-- User name STRING - to see the name of the person
+- User id INT: to denote user
+- Book id INT: to denote book
+- User name STRING: to see the name of the person
 - Issue date DATE
-- Expected Return Date DATE - Auto generated from issue date as issue date + 21
-- Return Date DATE - NULL till the book has been returned
-- Overtime BOOL- AUTO GENERATED Whether the return date exceeded the due time
+- Expected Return Date DATE:  Auto generated from issue date as issue date + 21
+- Return Date DATE:  NULL till the book has been returned
+- Overtime BOOL: AUTO GENERATED Whether the return date exceeded the due time
 <br>
-3. Users - To store user details
-- User id INT - Auto generated
-- User name STRING - user name
-- Password - Required for logging in to avail services 
-- Role - Admin or student to give me required rights on sign in
+3. Users: To store user details
+- User id INT: Auto generated
+- User name STRING: user name
+- Password: Required for logging in to avail services 
+- Role: Admin or student to give me required rights on sign in

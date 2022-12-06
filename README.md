@@ -20,7 +20,7 @@ There are two types of users and their rights are
 - Author STRING
 - Quantity INT: to denote the total quantity of the book in the library
 - Available INT: to show no. of those book currently available in library
-<br>
+
 2. Records: To store issue and return details
 - User id INT: to denote user
 - Book id INT: to denote book
@@ -33,5 +33,5 @@ There are two types of users and their rights are
 3. Users: To store user details
 - User id INT: Auto generated
 - User name STRING: user name
-- Password: Required for logging in to avail services 
-- Role: Admin or student to give me required rights on sign in
+- Password STRING: Required for logging in to avail services 
+- Role STRING: Admin or student to give me required rights on sign in

@@ -1,5 +1,12 @@
 # Library-Management-System
 
+## Required Libraries and software
+1. Mysql (8.0 or greater)
+2. Pretty Table
+3. Pandas
+4. Python3
+
+
 ## Steps to run
 1. Clone this repository.
 2. Run sql.py for creating database, populate the tables with sample data.
